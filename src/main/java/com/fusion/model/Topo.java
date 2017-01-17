@@ -20,6 +20,8 @@ public class Topo implements Serializable {
 	/** topo类型 */
 	private int topoType;
 
+	private String id;
+
 	public String getDescription() {
 		return description;
 	}
