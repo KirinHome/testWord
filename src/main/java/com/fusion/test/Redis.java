@@ -1,14 +1,50 @@
 package com.fusion.test;
 
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Redis {
 
     private static Jedis jedis;
 
-    public static void main(String[] args) {
+    private static ExecutorService executorService = Executors.newFixedThreadPool(10);
+
+    private static JedisPool jedisPool = null;
+
+    public static void main(StringTest[] args) {
+
+        GenericObjectPoolConfig genericObjectPoolConfig = new GenericObjectPoolConfig();
+
+        genericObjectPoolConfig.setMaxTotal(100);
+
+        jedisPool = new JedisPool(genericObjectPoolConfig, "", 1111);
+
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+
+                Jedis jedis = null;
+                try {
+
+                    Jedis resource = Redis.jedisPool.getResource();
+
+                    resource.setex("",5*60,"");
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    if (jedis != null){
+                        Redis.jedisPool.returnResource(jedis);
+                    }
+                }finally {
+                    Redis.jedisPool.returnResource(jedis);
+                }
+            }
+        });
+
 
 //        String redisAddress = "192.168.1.101";
 //        int redisPort = 6379;

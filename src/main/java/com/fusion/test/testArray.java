@@ -7,7 +7,8 @@ import java.lang.reflect.Method;
 
 public class testArray {
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    /**
+    public static void main(StringTest[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
 
         Topo topo = new Topo();
@@ -51,6 +52,42 @@ public class testArray {
             System.out.println(type);
         }
     }
+     */
 
+
+    public static void main(String[] args) {
+
+
+        byte a = 3;
+
+        byte b = 3;
+
+        b +=  a;
+        System.out.println(b);
+
+        Topo topo = new Topo();
+        Topo topo1 = new Topo();
+        if (topo == topo1){
+            System.out.println("ok");
+        }
+
+
+        try {
+
+            Runtime runtime = Runtime.getRuntime();
+            long l = runtime.freeMemory();
+            long l1 = runtime.totalMemory();
+
+            long l2 = runtime.maxMemory();
+            System.out.println(l);
+            System.out.println(l1);
+            System.out.println(l2);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+
+    }
 
 }

@@ -80,4 +80,5 @@ public class MergeSort {
         System.out.print("排序后:\t\t");
         merge.printAll(array);
     }
+
 }

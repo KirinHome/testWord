@@ -7,7 +7,7 @@ import java.util.List;
 public class BinTreeTraverse {
 
 
-    private int [] array = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private int [] array = {1, 2, 3, 4, 5, 6, 7, 8};
 
     private static List<Node> nodeList = null;
 
@@ -100,7 +100,7 @@ public class BinTreeTraverse {
         System.out.print(node.data + " ");
     }
 
-    public static void main(String[] args) {
+    public static void main(StringTest[] args) {
 
         BinTreeTraverse binTree = new BinTreeTraverse();
         binTree.createBinTree();
